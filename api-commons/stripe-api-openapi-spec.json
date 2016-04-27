@@ -1,0 +1,515 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "Stripe API",
+		"description": null,
+		"termsOfService": "https://stripe.com/terms",
+		"version": "v1"
+	},
+	"host": "api.stripe.com",
+	"basePath": "v1/",
+	"schemes": ["http"],
+	"produces": ["application/json"],
+	"consumes": ["application/json"],
+	"paths": {
+		"/v1/customers/{CUSTOMER_ID}/subscriptions": {
+			"get": {
+				"summary": "List active subscriptions",
+				"description": "n        You can see a list of the customers active subscriptions. Note that the 10 most recent active subscriptions are always available by default on the customer object. If you need more than those 10, you can use the limit and starting_after parameters to page through additional subscriptions.n      ",
+				"operationId": "list-subscriptions",
+				"parameters": [{
+					"in": "query",
+					"name": "customer",
+					"description": "<p class=method-list-item-description>n            The ID of the customer whose subscriptions will be retrievedn          </p>",
+					"type": "string"
+				},
+				{
+					"in": "path",
+					"name": "customer_id",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "ending_before",
+					"description": "<p class=method-list-item-description>n            A cursor for use in pagination. <code>ending_before</code> is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with <code>obj_bar</code>, your subsequent call can include <code>ending_before=obj_bar</code> in order to fetch the previous page of the list.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "limit",
+					"description": "<p class=method-list-item-description>n            A limit on the number of objects to be returned. Limit can range between 1 and 100 items.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "starting_after",
+					"description": "<p class=method-list-item-description>n            A cursor for use in pagination. <code>starting_after</code> is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with <code>obj_foo</code>, your subsequent call can include <code>starting_after=obj_foo</code> in order to fetch the next page of the list.n          </p>",
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": [""],
+				"security": []
+			},
+			"post": {
+				"summary": "Create a subscription",
+				"description": "n        Creates a new subscription on an existing customer.n      ",
+				"operationId": "create-subscription",
+				"parameters": [{
+					"in": "query",
+					"name": "application_fee_percent",
+					"description": "<p class=method-list-item-description>n            A positive decimal (with at most two decimal places) between 1 and 100. This represents the percentage of the subscription invoice subtotal that will be transferred to the application owneru2019s Stripe account. The request must be made with an OAuth key in order to set an application fee percentage. For more information, see the application fees <a href=/docs/connect/collecting-fees#subscriptions>documentation</a>.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "coupon",
+					"description": "<p class=method-list-item-description>n            The code of the coupon to apply to this subscription. A coupon applied to a subscription will only affect invoices created for that particular subscription.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "path",
+					"name": "customer_id",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "cvc",
+					"description": "<p class=method-list-item-description>n                  Card security code. Required unless your account is registered in Australia, Canada, or the United States. Highly recommended to always include this value.n                </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "exp_year",
+					"description": "<p class=method-list-item-description>n                  Two or four digit number representing the cards expiration year.n                </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "metadata",
+					"description": "<p class=method-list-item-description>n            A set of key/value pairs that you can attach to a subscription object. It can be useful for storing additional information about the subscription in a structured format.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "name",
+					"description": "<p class=method-list-item-description>n                  Cardholders full name.n                </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "number",
+					"description": "<p class=method-list-item-description>n                  The card number, as a string without any separators.n                </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "object",
+					"description": "<p class=method-list-item-description>n                  The type of payment source. Should be card.n                </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "plan",
+					"description": "<p class=method-list-item-description>n            The identifier of the plan to subscribe the customer to.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "quantity",
+					"description": "<p class=method-list-item-description>n            The quantity of the plan to which the customer should be subscribed. For example, if your plan is $10/user/month, and your customer has 5 users, you could pass 5 as the quantity to have the customer charged $50 (5 x $10) monthly.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "source",
+					"description": "<p class=method-list-item-description>n            The source can either be a token, like the ones returned by our <a href=https://stripe.com/docs/stripe.js>Stripe.js</a>, or a dictionary containing a users credit card details (with the options shown below). You must provide a source if the customer does not already have a valid source attached, and you are subscribing the customer for a plan that is not free. Passing <code>source</code> will create a new source object, make it the customer default source, and delete the old customer default if one exists. If you want to add an additional source to use with subscriptions, instead use the <a href=https://stripe.com/docs/api#create_card>card creation API</a> to add the card and then the <a href=https://stripe.com/docs/api#update customer>customer update API</a> to set it as the default. Whenever you attach a card to a customer, Stripe will automatically validate the card.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "tax_percent",
+					"description": "<p class=method-list-item-description>n            A positive decimal (with at most two decimal places) between 1 and 100. This represents the percentage of the subscription invoice subtotal that will be calculated and added as tax to the final amount each billing period. For example, a plan which charges $10/month with a <code>tax_percent</code> of 20.0 will charge $12 per invoice.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "trial_end",
+					"description": "<p class=method-list-item-description>n            Unix timestamp representing the end of the trial period the customer will get before being charged for the first time. If set, trial_end will override the default trial period of the plan the customer is being subscribed to. The special value <code>now</code> can be provided to end the customers trial immediately.n          </p>",
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": [""],
+				"security": []
+			}
+		},
+		"/v1/customers/{CUSTOMER_ID}/subscriptions/{SUBSCRIPTION_ID}": {
+			"delete": {
+				"summary": "Cancel a subscription",
+				"description": "Cancels a customeru2019s subscription. If you set the at_period_end parameter to true, the subscription will remain active until the end of the period, at which point it will be canceled and not renewed. By default, the subscription is terminated immediately. In either case, the customer will not be charged again for the subscription. Note, however, that any pending invoice items that youu2019ve created will still be charged for at the end of the period unless manually deleted. If youu2019ve set the subscription to cancel at period end, any pending prorations will also be left in place and collected at the end of the period, but if the subscription is set to cancel immediately, pending prorations will be removed.",
+				"operationId": "cancel-subscription",
+				"parameters": [{
+					"in": "query",
+					"name": "at_period_end",
+					"description": "<p class=method-list-item-description>n            A flag that if set to true will delay the cancellation of the subscription until the end of the current period.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "path",
+					"name": "customer_id",
+					"type": "string"
+				},
+				{
+					"in": "path",
+					"name": "subscription_id",
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": [""],
+				"security": []
+			},
+			"post": {
+				"summary": "Update a subscription",
+				"description": "n        Updates an existing subscription on a customer to match the specified parameters.n        When changing plans or quantities, we will optionally prorate the price we charge next month to make up for any price changes.n        To preview how the proration will be calculated, use the upcoming invoice endpoint.n      ",
+				"operationId": "update-subscription",
+				"parameters": [{
+					"in": "query",
+					"name": "application_fee_percent",
+					"description": "<p class=method-list-item-description>n            A positive decimal (with at most two decimal places) between 1 and 100 that represents the percentage of the subscription invoice amount due each billing period (including any bundled invoice items) that will be transferred to the application owneru2019s Stripe account. The request must be made with an OAuth key in order to set an application fee percentage . For more information, see the application fees <a href=/docs/connect/collecting-fees#subscriptions>documentation</a>.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "coupon",
+					"description": "<p class=method-list-item-description>n            The code of the coupon to apply to this subscription. A coupon applied to a subscription will only affect invoices created for that particular subscription.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "path",
+					"name": "customer_id",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "cvc",
+					"description": "<p class=method-list-item-description>n                  Card security code. Required unless your account is registered in Australia, Canada, or the United States. Highly recommended to always include this value.n                </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "exp_month",
+					"description": "<p class=method-list-item-description>n                  Two digit number representing the cards expiration month.n                </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "exp_year",
+					"description": "<p class=method-list-item-description>n                  Two or four digit number representing the cards expiration year.n                </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "metadata",
+					"description": "<p class=method-list-item-description>n            A set of key/value pairs that you can attach to a subscription object. It can be useful for storing additional information about the subscription in a structured format.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "name",
+					"description": "<p class=method-list-item-description>n                  Cardholders full name.n                </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "number",
+					"description": "<p class=method-list-item-description>n                  The card number, as a string without any separators.n                </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "plan",
+					"description": "<p class=method-list-item-description>n            The identifier of the plan to update the subscription to. If omitted, the subscription will not change plans.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "prorate",
+					"description": "<p class=method-list-item-description>n            Flag telling us whether to prorate switching plans during a billing cycle.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "proration_date",
+					"description": "<p class=method-list-item-description>n            If set, the proration will be calculated as though the subscription was updated at the given time.n            This can be used to apply exactly the same proration that was previewed withn            <a href=#retrieve_customer_invoice>upcoming invoice</a> endpoint.n            It can also be used to implement custom proration logic, such as prorating by day instead of by second,n            by providing the time that you wish to use for proration calculations.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "quantity",
+					"description": "<p class=method-list-item-description>n            The quantity of the plan to which the customer should be subscribed. For example, if your plan is $10/user/month, and your customer has 5 users, you could pass 5 as the quantity to have the customer charged $50 (5 x $10) monthly. If you update a subscription but dont change the plan ID (e.g. changing only the trial_end), the subscription will inherit the old subscriptions quantity attribute unless you pass a new quantity parameter.  If you update a subscription and change the plan ID, the new subscription will not inherit the quantity attribute and will default to 1 unless you pass a quantity parameter.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "source",
+					"description": "<p class=method-list-item-description>n            The source can either be a token, like the ones returned by our <a href=https://stripe.com/docs/stripe.js>Stripe.js</a>, or a dictionary containing a users credit card details (with the options shown below). You must provide a source if the customer does not already have a valid source attached, and you are subscribing the customer for a plan that is not free. Passing <code>source</code> will create a new source object, make it the customer default source, and delete the old customer default if one exists. If you want to add an additional source to use with subscriptions, instead use the <a href=https://stripe.com/docs/api#create_card>card creation API</a> to add the card and then the <a href=https://stripe.com/docs/api#update customer>customer update API</a> to set it as the default. Whenever you attach a card to a customer, Stripe will automatically validate the card.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "path",
+					"name": "subscription_id",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "tax_percent",
+					"description": "<p class=method-list-item-description>n            Update the amount of tax applied to this subscription. Changing the <code>tax_percent</code> of a subscription will only affect future invoices.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "trial_end",
+					"description": "<p class=method-list-item-description>n            Unix timestamp representing the end of the trial period the customer will get before being charged for the first time. If set, trial_end will override the default trial period of the plan the customer is being subscribed to. The special value <code>now</code> can be provided to end the customers trial immediately.n          </p>",
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": [""],
+				"security": []
+			}
+		},
+		"/v1/invoices": {
+			"get": {
+				"summary": "List all invoices",
+				"description": "You can list all invoices, or list the invoices for a specific customer. The invoices are returned sorted by creation date, with the most recently created invoices appearing first.",
+				"operationId": "list-invoices",
+				"parameters": [{
+					"in": "query",
+					"name": "customer",
+					"description": "<p class=method-list-item-description>n            The identifier of the customer whose invoices to return. If none is provided, all invoices will be returned.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "date",
+					"description": "<p class=method-list-item-description>n              A filter on the list based on the object <code>date</code> field. The value can be a string with an integer Unix timestamp, or it can be a dictionary with the following options:n            </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "ending_before",
+					"description": "<p class=method-list-item-description>n            A cursor for use in pagination. <code>ending_before</code> is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with <code>obj_bar</code>, your subsequent call can include <code>ending_before=obj_bar</code> in order to fetch the previous page of the list.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "gte",
+					"description": "<p class=method-list-item-description>n            Return values where the <code>date</code> field is after or equal to this timestamp.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "limit",
+					"description": "<p class=method-list-item-description>n            A limit on the number of objects to be returned. Limit can range between 1 and 100 items.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "lt",
+					"description": "<p class=method-list-item-description>n            Return values where the <code>date</code> field is before this timestamp.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "lte",
+					"description": "<p class=method-list-item-description>n            Return values where the <code>date</code> field is before or equal to this timestamp.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "starting_after",
+					"description": "<p class=method-list-item-description>n            A cursor for use in pagination. <code>starting_after</code> is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with <code>obj_foo</code>, your subsequent call can include <code>starting_after=obj_foo</code> in order to fetch the next page of the list.n          </p>",
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": [""],
+				"security": []
+			}
+		},
+		"/v1/invoices/upcoming": {
+			"get": {
+				"summary": "Retrieve an upcoming invoice",
+				"description": "At any time, you can preview the upcoming invoice for a customer. This will show you all the charges that are pending, including subscription renewal charges, invoice item charges, etc. It will also show you any discount that is applicable to the customer.",
+				"operationId": "upcoming-invoice",
+				"parameters": [{
+					"in": "query",
+					"name": "coupon",
+					"description": "<p class=method-list-item-description>n            The code of the coupon to apply. If a <code>subscription</code> or <code>subscription_plan</code> is provided, the invoice returned will preview updating or creating a subscription with that coupon. Otherwise, it will preview applying that coupon to the customer for the next upcoming invoice from among the customeru2019s subscriptions.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "customer",
+					"description": "<p class=method-list-item-description>n            The identifier of the customer whose upcoming invoice youu2019d like to retrieve.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "subscription",
+					"description": "<p class=method-list-item-description>n            The identifier of the subscription for which youu2019d like to retrieve the upcoming invoice. If not provided, but a <code>subscription_plan</code> is provided, you will preview creating a subscription to that plan. If neither <code>subscription</code> nor <code>subscription_plan</code> is provided, you will retrieve the next upcoming invoice from among the customeru2019s subscriptions.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "subscription_plan",
+					"description": "<p class=method-list-item-description>n            If set, the invoice returned will preview updating the subscription given to this plan, or creating a new subscription to this plan if no <code>subscription</code> is given.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "subscription_prorate",
+					"description": "<p class=method-list-item-description>n            If previewing an update to a subscription, this decides whether the preview will show the result of applying prorations or not. If set, one of <code>subscription_plan</code> or <code>subscription</code>, and one of <code>subscription_plan</code>, <code>subscription_quantity</code> or <code>subscription_trial_end</code> are required.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "subscription_proration_date",
+					"description": "<p class=method-list-item-description>n            If previewing an update to a subscription, and doing proration, <code>subscription_proration_date</code> forces the proration to be calculated as though the update was done at the specified time. The time given must be within the current subscription period, and cannot be before the subscription was on its current plan.If set, <code>subscription</code>, and one of <code>subscription_plan</code>, <code>subscription_quantity</code> or <code>subscription_trial_end</code> are required. Also, <code>subscription_proration</code> cannot be set to false.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "subscription_quantity",
+					"description": "<p class=method-list-item-description>n            If provided, the invoice returned will preview updating or creating a subscription with that quantity. If set, one of <code>subscription_plan</code> or <code>subscription</code> is required.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "subscription_trial_end",
+					"description": "<p class=method-list-item-description>n            If provided, the invoice returned will preview updating or creating a subscription with that trial end. If set, one of <code>subscription_plan</code> or <code>subscription</code> is required.n          </p>",
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": [""],
+				"security": []
+			}
+		},
+		"/v1/invoices/{INVOICE_ID}": {
+			"post": {
+				"summary": "Update an invoice",
+				"description": "n        Until an invoice is paid, it is marked as open (closed=false). If youd like to stop Stripe from automatically attempting payment on an invoice or would simply like to close the invoice out as no longer owed by the customer, you can update the closed parameter.n      ",
+				"operationId": "update-invoice",
+				"parameters": [{
+					"in": "query",
+					"name": "application_fee",
+					"description": "<p class=method-list-item-description>n            A fee in cents that will be applied to the invoice and transferred to the application owneru2019s Stripe account. The request must be made with an OAuth key or the Stripe-Account header in order to take an application fee. For more information, see the application fees <a href=/docs/connect/collecting-fees#subscriptions>documentation</a>.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "closed",
+					"description": "<p class=method-list-item-description>n            Boolean representing whether an invoice is closed or not.  To close an invoice, pass true.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "forgiven",
+					"description": "<p class=method-list-item-description>n            Boolean representing whether an invoice is forgiven or not.  To forgive an invoice, pass true.  Forgiving an invoice instructs us to update the subscription status as if the invoice were successfully paid. Once an invoice has been forgiven, it cannot be unforgiven or reopened.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "path",
+					"name": "invoice_id",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "statement_descriptor",
+					"description": "<p class=method-list-item-description>n            Extra information about a charge for the customeru2019s credit card statement.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "query",
+					"name": "tax_percent",
+					"description": "<p class=method-list-item-description>n            The percent tax rate applied to the invoice, represented as a decimal number. The tax rate of a paid or forgiven invoice cannot be changed.n          </p>",
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": [""],
+				"security": []
+			}
+		},
+		"/v1/invoices/{INVOICE_ID}/pay": {
+			"post": {
+				"summary": "Pay an invoice",
+				"description": "Stripe automatically creates and then attempts to pay invoices for customers on subscriptions. Weu2019ll also retry unpaid invoices according to your retry settings. However, if youu2019d like to attempt to collect payment on an invoice out of the normal retry schedule or for some other reason, you can do so.",
+				"operationId": "pay-invoice",
+				"parameters": [{
+					"in": "query",
+					"name": "invoice",
+					"description": "<p class=method-list-item-description>n            ID of invoice to pay.n          </p>",
+					"type": "string"
+				},
+				{
+					"in": "path",
+					"name": "invoice_id",
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": [""],
+				"security": []
+			}
+		},
+		"customers/{CUSTOMER_ID}/subscriptions/{SUBSCRIPTION_ID}": {
+			"retrieve a subscriptionn      n        by def": {
+				"summary": "Retrieve a subscription",
+				"description": "By default, you can see the 10 most recent active subscriptions stored on a customer directly on the customer object, but you can also retrieve details about a specific active subscription for a customer.",
+				"operationId": "retrieve-subscription",
+				"parameters": [{
+					"in": "query",
+					"name": "id",
+					"description": "<p class=method-list-item-description>n            ID of subscription to retrieve.n          </p>",
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK"
+					}
+				},
+				"tags": [""],
+				"security": []
+			}
+		}
+	},
+	"definitions": []
+}
