@@ -1,5 +1,5 @@
-title:        APIs.json Annotation
-url:          http://apis.json.annotation.apievangelist.com/
+title:        Stripe API Definition
+url:          http://stripe.stack.network/
 logo:         http://kinlane-productions.s3.amazonaws.com/api-evangelist/api-evangelist-logo-400.png
 logo_width:   80
 logo_bottom_padding: 10
@@ -19,13 +19,13 @@ paginate_path: "/news/page:num"
 categories_path : /categories.html
 tags_path : /tags.html
 
-org: api-evangelist-tools
-repo: apis-json-annotation
+org: api-stack
+repo: stripe-api-definition
 
 # Masthead title
-masthead_link: http://apis.json.annotation.apievangelist.com/
+masthead_link: http://stripe.stack.network/
 masthead_font_size: 65
-masthead_title: '{"APIs.json Annotation"}'
+masthead_title: '{"Stripe API Definition"}'
 
 # Feature
 feature_title: API Guide
