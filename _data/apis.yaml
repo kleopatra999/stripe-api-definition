@@ -1,39 +1,36 @@
-name: Stripe
-description: ""
-image: ""
-x-open-ranking: "0"
-tags: []
-created: "2016-04-26"
-modified: "2016-04-26"
-url: stripe.stack.networkapis.json
-specificationVersion: "0.14"
-apis:
 - name: Stripe API
-  description: ""
-  image: https://stripe.com/img/about/logos/logos/black.png
-  humanURL: https://stripe.com/
-  baseURL: https://stripe.com/
-  tags: []
-  properties:
-  - type: x-openapi-spec
-    url: api-commons/stripe-api-openapi-spec.json
-x-common:
-- type: x-blog
-  url: https://stripe.com/blog
-- type: x-blog-rss-feed
-  url: https://stripe.com/blog/feed.rss
-- type: x-github
-  url: https://github.com/stripe
-- type: x-twitter
-  url: https://twitter.com/stripe
-- type: x-webinars
-  url: https://stripe.com/
-- type: x-portal
-  url: https://stripe.com/
-include:
-- name: Parent
+  description: "The description for the Stripe API."
+  image: "https://stripe.com/img/about/logos/logos/black.pn"
+  tags: ["Payments"]
+  created: "2016-04-26"
+  modified: "2016-04-26"
   url: stripe.stack.networkapis.json
-maintainers:
-- FN: Kin Lane
-  x-twitter: apievangelist
-  email: info@apievangelist.com
+  specificationVersion: "0.14"
+  apis:
+  - name: Stripe API
+    description: ""
+    image: https://stripe.com/img/about/logos/logos/black.png
+    humanURL: https://stripe.com/
+    baseURL: https://stripe.com/
+    tags: ["Payments"]
+    properties:
+    - type: x-openapi-spec
+      url: api-commons/stripe-api-openapi-spec.json
+  x-common:
+  - type: x-blog
+    url: https://stripe.com/blog
+  - type: x-blog-rss-feed
+    url: https://stripe.com/blog/feed.rss
+  - type: x-github
+    url: https://github.com/stripe
+  - type: x-twitter
+    url: https://twitter.com/stripe
+  - type: x-webinars
+    url: https://stripe.com/
+  - type: x-portal
+    url: https://stripe.com/
+  include: 
+  maintainers:
+  - FN: Kin Lane
+    x-twitter: apievangelist
+    email: info@apievangelist.com
