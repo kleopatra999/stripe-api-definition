@@ -46,7 +46,7 @@ banner_image_width: 60
 
 # Project
 project_image: https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-design.png
-project_title: Minimum Viable API Operations Definition
+project_title: Stripe API Definition
 project_summary: This is my repo dedicated to mapping out the Stripe API as an OpenAPI Spec. My goal is to get as complete of a definition as I can, while also making it openly available on Github. I am doing this for all the APIs included in my Stack.Network research.
 project_footer: If you have a Stripe OpenAPI Spec feel free to submit, or if you see any issues, anything missing feel free to submit a pull request. You can find more API definitions within the master org, as well as at theapistack.com.
 
