@@ -194,18 +194,21 @@ function loadAPIsJson($apisjsonURL)
         $masterIncludes = apisJSON['include'];
 
         // Begin Includes
-        $.each($masterIncludes, function(masterKey, masterValue) {
+        if(masterIncludes.length > 0)
+          {
+          $.each($masterIncludes, function(masterKey, masterValue) {
 
-            $includeName = masterValue['name'];
-            $includeRootUrl = masterValue['url'];
-            console.log($includeRootUrl);
+              $includeName = masterValue['name'];
+              $includeRootUrl = masterValue['url'];
+              console.log($includeRootUrl);
 
-            // Begin Pull Include
-            loadAPIsJson($includeRootUrl)
-            // Begin Pull Include
+              // Begin Pull Include
+              loadAPIsJson($includeRootUrl)
+              // Begin Pull Include
 
-            });
-            // End Includes
+              });
+              // End Includes
+            }
         });
         // End Pull Root APIs.json
     }
