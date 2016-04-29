@@ -1,12 +1,12 @@
 {
 	"name": "Stripe",
-	"description": "",
-	"image": "",
+	"description": "This is my working stack.network project for defining the Stripe API definition.",
+	"image": "https://stripe.com/img/about/logos/logos/black.png",
 	"x-open-ranking": "0",
-	"tags": [],
+	"tags": ["Payments"],
 	"created": "2016-04-28",
 	"modified": "2016-04-28",
-	"url": "stripe.stack.networkapis.json",
+	"url": "http://stripe.stack.networkapis.json",
 	"specificationVersion": "0.14",
 	"apis": [{
 		"name": "Stripe API",
