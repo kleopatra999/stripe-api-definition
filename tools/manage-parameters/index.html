@@ -97,7 +97,7 @@ function processAPI($singleAPIs)
                   if (!/^(f|ht)tps?:\/\//i.test($url)) {
                         $url = "{{ site.url }}" + $url;
                      }
-
+                     console.log($url);
                 var jqxhr3 = $.getJSON($url, function($openapispec) {
 
                     $openapi_spec_store[$openapi_spec_count] = $openapispec;
