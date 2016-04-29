@@ -3387,7 +3387,7 @@
     },
     "/invoices/{invoice_id}/lines/": {
       "get": {
-        "summary": "Retrieve an invoice's line items",
+        "summary": "Retrieve an invoices line items",
         "description": "When retrieving an invoice, youll get a lines property containing the total count of line items and the first handful of those items. There is also a URL where you can retrieve the full (paginated) list of line items.n      ",
         "operationId": "invoice-lines",
         "parameters": [
