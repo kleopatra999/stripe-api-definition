@@ -120,7 +120,7 @@ function processAPI($singleAPIs)
 
                     $table = '<table border="0" id="path-' + $openapi_spec_count + '">';
                     $('#jsonBrowser').append($table);
-
+                    console.log("Path Count: " + $paths);
                     $.each($paths, function(pathKey, pathValue) {
 
                         $path_name = pathKey;
