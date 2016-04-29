@@ -75,6 +75,8 @@ function processAPI($singleAPIs)
 
         $apiName = apiVal['name'];
 
+        console.log("2)" + apiName);
+
         $apiDesc = apiVal['description'];
         $apiLogo = apiVal['image'];
         $apiHumanURL = apiVal['humanURL'];
@@ -194,7 +196,7 @@ function loadAPIsJson($apisjsonURL)
         $masterIncludes = apisJSON['include'];
 
         // Begin Includes
-        if(masterIncludes.length > 0)
+        if($masterIncludes.length > 0)
           {
           $.each($masterIncludes, function(masterKey, masterValue) {
 
