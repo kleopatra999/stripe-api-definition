@@ -6,7 +6,7 @@
 	"tags": ["Payments"],
 	"created": "2016-04-28",
 	"modified": "2016-04-28",
-	"url": "http://stripe.stack.networkapis.json",
+	"url": "http://stripe.stack.network/",
 	"specificationVersion": "0.14",
 	"apis": [{
 		"name": "Stripe API",
