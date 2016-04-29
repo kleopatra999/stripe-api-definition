@@ -7,7 +7,7 @@
         "version": "v1"
     },
     "host": "api.stripe.com",
-    "basePath": "v1/",
+    "basePath": "/v1/",
     "schemes": [
         "http"
     ],
@@ -126,7 +126,7 @@
                 "security": []
             }
         },
-        "/accounts/{account_id}/external_accounts/{card_id}v1/accounts/{account_id}/external_accounts/{card_id}": {
+        "/accounts/{account_id}/external_accounts/{card_id}/": {
             "delete": {
                 "summary": "Delete a card",
                 "description": "You can delete cards from a managed account.n      ",
@@ -1174,7 +1174,7 @@
                 "security": []
             }
         },
-        "/balance/historyv1/balance/history/": {
+        "/balance/history/": {
             "get": {
                 "summary": "List all balance history",
                 "description": "Returns a list of transactions that have contributed to the Stripe account balance (e.g., charges, transfers, and so forth). The transactions are returned in sorted order, with the most recent transactions appearing first.n      ",
