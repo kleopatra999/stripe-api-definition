@@ -133,7 +133,7 @@ function processAPI($singleAPIs)
 
                           $summary = '<tr><td align="left" colspan="2" style="padding: 5px 5px 10px 5px; font-size: 16px;"><strong>' + $method + ' ' + $path_name + '</strong></td></tr>';
                           $('#path-' + $openapi_spec_count).append($summary);
-
+                          console.log("here!");
                           $.each(methodValue.parameters, function($paramKey, $paramValue) {
                               $param_in = $paramValue.in;
                               $param_name = $paramValue.name;
