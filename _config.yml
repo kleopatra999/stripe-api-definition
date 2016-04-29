@@ -22,6 +22,11 @@ tags_path : /tags.html
 org: api-stack
 repo: stripe-api-definition
 
+get_color: 009900;
+post_color: 0000ff;
+put_color: FF0080;
+delete_color: FF9900;
+
 # Masthead title
 masthead_link: http://stripe.stack.network/
 masthead_font_size: 65
